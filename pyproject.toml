@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "test-tag-action"
-version = "0.1.7"
+version = "0.1.8"
 description = ""
 authors = ["Chuang Yu Min <chg.yumin@gmail.com>"]
 readme = "README.md"
