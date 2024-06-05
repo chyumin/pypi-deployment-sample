@@ -27,5 +27,5 @@ jobs:
           git config --global user.name "GitHub Actions"
           git commit -m "bump up $BUMP_VERSION version from workflow"
           git push
-          git tag $GIT_TAG
-          git push origin $GIT_TAG
+          git tag $BUMP_VERSION
+          git push origin $BUMP_VERSION
