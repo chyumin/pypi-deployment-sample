@@ -19,12 +19,15 @@ jobs:
       - uses: snok/install-poetry@v1
 
       - name: Build and Publish poetry
-        # env:
-        #   POETRY_PYPI_TOKEN_PYPI: ${{ env.POETRY_PYPI_TOKEN_PYPI }}
+        env:
+          POETRY_PYPI_TOKEN_PYPI: ${{ env.POETRY_PYPI_TOKEN_PYPI }}
+          PYPI_SECRET: ${{ secret.POETRY_PYPI_TOKEN_PYPI }}
+          TEST_ENV: abcdef
         run: |
           echo Started Step
           echo Poetry Token: $POETRY_PYPI_TOKEN_PYPI // ${POETRY_PYPI_TOKEN_PYPI} // ${{ env.POETRY_PYPI_TOKEN_PYPI }}
-          echo Poetry Token as Secret: ${{ secret.POETRY_PYPI_TOKEN_PYPI }}
+          echo Poetry Token as Secret: $PYPI_SECRET
+          echo TEST_ENV: $TEST_ENV
           poetry version patch
           # poetry config pypi-token $POETRY_PYPI_TOKEN_PYPI
           # poetry build
