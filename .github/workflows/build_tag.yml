@@ -19,8 +19,9 @@ jobs:
 
       - name: Build poetry
         run: |
-          poetry install
           poetry version patch
+
+      - name: Push bump commit and tag
           BUMP_VERSION=v$(poetry version --short)
           git add pyproject.toml
           git config --global user.email "actions@github.com"
