@@ -21,7 +21,7 @@ jobs:
       - name: Show envs
         run: env
 
-      - name: Build and Publish poetry
+      - name: Build and Publish to PYPI
         env:
           POETRY_PYPI_TOKEN_PYPI: ${{ vars.POETRY_PYPI_TOKEN_PYPI }}
         run: |
