@@ -18,6 +18,8 @@ jobs:
           python-version: '3.12'
       - uses: snok/install-poetry@v1
 
+      - name: Show envs
+        run: env
       - name: Build and Publish poetry
         env:
           POETRY_PYPI_TOKEN_PYPI: ${{ env.POETRY_PYPI_TOKEN_PYPI }}
