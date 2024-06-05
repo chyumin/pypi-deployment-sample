@@ -27,22 +27,9 @@ jobs:
           git commit -m "bump up ${{ github.event.inputs.version }} version from workflow"
           git push
 
-      - name: Create Tag version
+      - name: Create and Push Tag
         run: |
           VERSION=$(poetry version --short)
           GIT_TAG="v$VERSION"
-          echo "GIT_TAG=$GIT_TAG" >> $GITHUB_ENV
-
-      - name: Create tag
-        uses: actions/github-script@v5
-        env:
-          GIT_TAG: ${{ env.GIT_TAG }}
-        with:
-          script: |
-            github.rest.git.createRef({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              ref: 'refs/tags/' + process.env.GIT_TAG,
-              sha: context.sha
-            })
-
+          git tag $GIT_TAG
+          git push origin $GIT_TAG
