@@ -1,0 +1,40 @@
+name: Build Tag
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - uses: snok/install-poetry@v1
+
+      - name: Build docs and Publish to PYPI
+        run: |
+          poetry install
+
+      - name: Create Tag version
+        run: |
+          VERSION=$(poetry version --short)
+          GIT_TAG="v$VERSION"
+          echo "GIT_TAG=$GIT_TAG" >> $GITHUB_ENV
+
+      - name: Create tag
+        uses: actions/github-script@v5
+        env:
+          GIT_TAG: ${{ env.GIT_TAG }}
+        with:
+          script: |
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'refs/tags/' + process.env.GIT_TAG,
+              sha: context.sha
+            })
+
