@@ -22,19 +22,20 @@ jobs:
         # env:
         #   POETRY_PYPI_TOKEN_PYPI: ${{ env.POETRY_PYPI_TOKEN_PYPI }}
         run: |
+          echo Started Step
           echo Poetry Token: $POETRY_PYPI_TOKEN_PYPI // ${ env.POETRY_PYPI_TOKEN_PYPI } /// ${{ env.POETRY_PYPI_TOKEN_PYPI }}
           poetry version patch
-          poetry config pypi-token $POETRY_PYPI_TOKEN_PYPI
-          poetry build
-          poetry publish
+          # poetry config pypi-token $POETRY_PYPI_TOKEN_PYPI
+          # poetry build
+          # poetry publish
 
-      - name: Push bump commit and Create Tag
-        run: |
-          BUMP_VERSION=v$(poetry version --short)
-          git add pyproject.toml
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
-          git commit -m "bump up $BUMP_VERSION version from workflow"
-          git push
-          git tag $BUMP_VERSION
-          git push origin $BUMP_VERSION
+      # - name: Push bump commit and Create Tag
+      #   run: |
+      #     BUMP_VERSION=v$(poetry version --short)
+      #     git add pyproject.toml
+      #     git config --global user.email "actions@github.com"
+      #     git config --global user.name "GitHub Actions"
+      #     git commit -m "bump up $BUMP_VERSION version from workflow"
+      #     git push
+      #     git tag $BUMP_VERSION
+      #     git push origin $BUMP_VERSION
