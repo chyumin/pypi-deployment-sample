@@ -1,6 +1,6 @@
 [tool.poetry]
-name = "test-tag-action"
-version = "0.1.11"
+name = "pypi-deployment-sample"
+version = "0.1.0"
 description = ""
 authors = ["Chuang Yu Min <chg.yumin@gmail.com>"]
 readme = "README.md"
