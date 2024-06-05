@@ -25,6 +25,7 @@ jobs:
           TEST_ENV: abcdef
         run: |
           echo Started Step
+          echo TESTME: $TESTME // ${TESTME} // ${{ env.TESTME }}
           echo Poetry Token: $POETRY_PYPI_TOKEN_PYPI // ${POETRY_PYPI_TOKEN_PYPI} // ${{ env.POETRY_PYPI_TOKEN_PYPI }}
           echo Poetry Token as Secret: $PYPI_SECRET // ${{ secrets.POETRY_PYPI_TOKEN_PYPI }}
           echo TEST_ENV: $TEST_ENV
