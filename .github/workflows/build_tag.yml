@@ -17,11 +17,15 @@ jobs:
           python-version: '3.12'
       - uses: snok/install-poetry@v1
 
-      - name: Build poetry
+      - name: Build and Publish poetry
+        env:
+          POETRY_PYPI_TOKEN_PYPI: ${{ env.POETRY_PYPI_TOKEN_PYPI }}
         run: |
           poetry version patch
+          poetry build
+          poetry publish
 
-      - name: Push bump commit and tag
+      - name: Push bump commit and Create Tag
         run: |
           BUMP_VERSION=v$(poetry version --short)
           git add pyproject.toml
