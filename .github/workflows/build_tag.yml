@@ -22,7 +22,7 @@ jobs:
         # env:
         #   POETRY_PYPI_TOKEN_PYPI: ${{ env.POETRY_PYPI_TOKEN_PYPI }}
         run: |
-          echo Poetry Token: $POETRY_PYPI_TOKEN_PYPI
+          echo Poetry Token: $POETRY_PYPI_TOKEN_PYPI // ${ env.POETRY_PYPI_TOKEN_PYPI } /// ${{ env.POETRY_PYPI_TOKEN_PYPI }}
           poetry version patch
           poetry config pypi-token $POETRY_PYPI_TOKEN_PYPI
           poetry build
