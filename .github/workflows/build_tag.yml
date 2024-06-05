@@ -21,16 +21,15 @@ jobs:
         run: |
           poetry install
           poetry version patch
-          VERSION=$(poetry version --short)
+          BUMP_VERSION=$(poetry version --short)
           git add pyproject.toml
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
-          git commit -m "bump up $VERSION version from workflow"
+          git commit -m "bump up $BUMP_VERSION version from workflow"
           git push
 
       - name: Create and Push Tag
         run: |
-          VERSION=$(poetry version --short)
-          GIT_TAG="v$VERSION"
+          GIT_TAG="v$BUMP_VERSION"
           git tag $GIT_TAG
           git push origin $GIT_TAG
