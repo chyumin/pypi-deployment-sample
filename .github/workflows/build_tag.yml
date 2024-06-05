@@ -17,9 +17,13 @@ jobs:
           python-version: '3.12'
       - uses: snok/install-poetry@v1
 
-      - name: Build docs and Publish to PYPI
+      - name: Build poetry
         run: |
           poetry install
+          poetry version patch
+          git add pyproject.toml
+          git commit -m "bump up ${{ github.event.inputs.version }} version from workflow"
+          git push
 
       - name: Create Tag version
         run: |
