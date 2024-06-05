@@ -6,7 +6,8 @@ on:
       - main
 
 jobs:
-  build:
+  build-tag-publish-pypi:
+    name: Build
     permissions:
       contents: write
     runs-on: ubuntu-latest
@@ -18,8 +19,8 @@ jobs:
       - uses: snok/install-poetry@v1
 
       - name: Build and Publish poetry
-        env:
-          POETRY_PYPI_TOKEN_PYPI: ${{ env.POETRY_PYPI_TOKEN_PYPI }}
+        # env:
+        #   POETRY_PYPI_TOKEN_PYPI: ${{ env.POETRY_PYPI_TOKEN_PYPI }}
         run: |
           poetry version patch
           poetry build
