@@ -56,7 +56,7 @@ jobs:
           git commit -m "bump up $BUMP_VERSION version from workflow"
 
           git branch
-          gh pr create -B $RELEASE_BRANCH_NAME -H 'main' --title 'Merge ${RELEASE_BRANCH_NAME} into main' --body 'Created by Github action'
+          gh pr create -B 'main' -H $RELEASE_BRANCH_NAME --title 'Merge ${RELEASE_BRANCH_NAME} into main' --body 'Created by Github action'
 
   build-docs:
     runs-on: ubuntu-latest
