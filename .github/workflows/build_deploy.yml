@@ -56,7 +56,10 @@ jobs:
       - name: Create pull request
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh pr create -B $RELEASE_BRANCH_NAME -H main --title 'Merge $RELEASE_BRANCH_NBAME into main' --body 'Created by Github action'
+        run: |
+          git status
+          git diff
+          gh pr create -B $RELEASE_BRANCH_NAME -H main --title 'Merge $RELEASE_BRANCH_NBAME into main' --body 'Created by Github action'
 
   build-docs:
     runs-on: ubuntu-latest
