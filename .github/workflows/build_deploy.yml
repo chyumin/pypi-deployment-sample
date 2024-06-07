@@ -57,7 +57,9 @@ jobs:
           git push -u origin $RELEASE_BRANCH_NAME
 
           git branch
-          gh pr create -B 'main' -H $RELEASE_BRANCH_NAME --title 'Merge ${RELEASE_BRANCH_NAME} into main' --body 'Created by Github action'
+          PR_TITLE=Merge $RELEASE_BRANCH_NAME into main
+          PR_BODY=Created by Github action
+          gh pr create -B 'main' -H $RELEASE_BRANCH_NAME --title $PR_TITLE --body $PR_BODY
 
   build-docs:
     runs-on: ubuntu-latest
