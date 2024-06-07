@@ -39,6 +39,7 @@ jobs:
           poetry version ${{ inputs.bump_version }}
           poetry build
           poetry publish --skip-existing
+          rm -r dist/
 
       - name: Push bump commit and Create Pull Request
         env:
@@ -54,6 +55,7 @@ jobs:
           git add pyproject.toml
           git commit -m "bump up $BUMP_VERSION version from workflow"
 
+          git branch
           gh pr create -B $RELEASE_BRANCH_NAME -H 'main' --title 'Merge ${RELEASE_BRANCH_NAME} into main' --body 'Created by Github action'
 
   build-docs:
