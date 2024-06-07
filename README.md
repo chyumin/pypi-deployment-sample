@@ -1,6 +1,5 @@
 ## pypi-deployment-sample
 
-
 This repository contains a deployment sample of a Python Pacakge (with poetry) via Github Actions to PYPI
 
 The workflow assumes that you have "POETRY_PYPI_TOKEN_PYPI" secrets configured
