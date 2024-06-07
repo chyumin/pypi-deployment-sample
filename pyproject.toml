@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pypi-deployment-sample"
-version = "0.5.13"
+version = "0.7.0"
 description = ""
 authors = ["Chuang Yu Min <chg.yumin@gmail.com>"]
 readme = "README.md"
