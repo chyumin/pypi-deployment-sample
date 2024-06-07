@@ -7,31 +7,22 @@ on:
 
 jobs:
   build-publish-pkg-push-tag:
-    if: ${{ !(contains(github.actor, '[bot]') && github.event_name == 'push') }}
+    # if: ${{ !(contains(github.actor, '[bot]') && github.event_name == 'push') }}
     name: Build and Publish Package & Push Git Tag
     permissions:
       contents: write
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/create-github-app-token@v1
-        id: app-token
-        with:
-          app-id: ${{ vars.DEPLOY_APP_ID }}
-          private-key: ${{ secrets.DEPLOY_APP_SECRET }}
-
       - name: Show envs
         run: env
 
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ steps.app-token.outputs.token }}
-
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-
       - uses: snok/install-poetry@v1
 
       - name: Build and Publish to PYPI
