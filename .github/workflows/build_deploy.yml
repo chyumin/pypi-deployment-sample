@@ -23,7 +23,7 @@ jobs:
 
       - name: Build and Publish to PYPI
         env:
-          POETRY_PYPI_TOKEN_PYPI: ${{ vars.POETRY_PYPI_TOKEN_PYPI }}
+          POETRY_PYPI_TOKEN_PYPI: ${{ secrets.POETRY_PYPI_TOKEN_PYPI }}
         run: |
           poetry version patch
           poetry build
