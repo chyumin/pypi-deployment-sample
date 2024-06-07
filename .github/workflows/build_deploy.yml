@@ -40,7 +40,7 @@ jobs:
           poetry build
           poetry publish --skip-existing
 
-      - name: Push bump commit and Create PulL Request
+      - name: Push bump commit and Create Pull Request
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
