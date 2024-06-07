@@ -32,11 +32,12 @@ jobs:
 
       - name: Build and Publish to PYPI
         env:
+          POETRY_REQUESTS_TIMEOUT: 60
           POETRY_PYPI_TOKEN_PYPI: ${{ secrets.POETRY_PYPI_TOKEN_PYPI }}
         run: |
           poetry version patch
           poetry build
-          poetry publish
+          poetry publish --skip-existing
 
       - name: Push bump commit and Create Tag
         run: |
