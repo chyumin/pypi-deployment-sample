@@ -56,12 +56,12 @@ jobs:
           git commit -m "bump up $BUMP_VERSION version from workflow"
           git push -u origin $RELEASE_BRANCH_NAME
 
-          git branch
           PR_TITLE=Merge $RELEASE_BRANCH_NAME into main
           PR_BODY=Created by Github action
           gh pr create -B 'main' -H $RELEASE_BRANCH_NAME --title $PR_TITLE --body $PR_BODY
 
   build-docs:
+    - name: Buld Docs
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
