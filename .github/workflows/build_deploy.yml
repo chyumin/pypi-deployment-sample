@@ -19,16 +19,15 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-
     runs-on: ubuntu-latest
     steps:
+
       - name: Show envs
         run: env
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-
       - uses: snok/install-poetry@v1
 
       - name: Build and Publish to PYPI
@@ -39,7 +38,6 @@ jobs:
           poetry version ${{ inputs.bump_version }}
           poetry build
           poetry publish --skip-existing
-          rm -r dist/
 
       - name: Push bump commit and Create Pull Request
         env:
