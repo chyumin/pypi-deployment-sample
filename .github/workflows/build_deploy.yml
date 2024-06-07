@@ -61,7 +61,7 @@ jobs:
           gh pr create -B 'main' -H $RELEASE_BRANCH_NAME --title $PR_TITLE --body $PR_BODY
 
   build-docs:
-    - name: Buld Docs
+    name: Buld Docs
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
