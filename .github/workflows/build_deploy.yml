@@ -55,6 +55,8 @@ jobs:
           git add pyproject.toml
           git commit -m "Bump version to $BUMP_VERSION from workflow"
           git push -u origin $RELEASE_BRANCH_NAME
+          git tag $BUMP_VERSION
+          git push origin $BUMP_VERSION
 
           gh pr create -B 'main' -H $RELEASE_BRANCH_NAME \
             --title "Bump version to $BUMP_VERSION" \
