@@ -46,18 +46,19 @@ jobs:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           RELEASE_V=v$(poetry version --short)
+          BRANCH_NAME=release/$RELEASE_V
 
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
 
-          git checkout -B $RELEASE_V
+          git checkout -B $BRANCH_NAME
           git add pyproject.toml
           git commit -m "Bump version to $RELEASE_V from workflow"
-          git push -u origin $RELEASE_V
+          git push -u origin $BRANCH_NAME
           git tag $RELEASE_V
           git push origin $RELEASE_V
 
-          gh pr create -B 'main' -H $RELEASE_V \
+          gh pr create -B 'main' -H $BRANCH_NAME \
             --title "Bump version to $RELEASE_V" \
             --body "Created by Github action"
 
