@@ -9,3 +9,5 @@ Actions Summary:
 - Bumps up a "patch" version
 - Build & Publish to PYPI
 - Creates and Pushes a commit and a git tag with new bumped version
+
+TEST
