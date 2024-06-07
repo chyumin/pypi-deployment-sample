@@ -45,27 +45,29 @@ jobs:
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          BUMP_VERSION=v$(poetry version --short)
-          RELEASE_BRANCH_NAME=github-release-$BUMP_VERSION
+          RELEASE_V=v$(poetry version --short)
 
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
 
-          git checkout -B $RELEASE_BRANCH_NAME
+          git checkout -B $RELEASE_V
           git add pyproject.toml
-          git commit -m "Bump version to $BUMP_VERSION from workflow"
-          git push -u origin $RELEASE_BRANCH_NAME
-          git tag $BUMP_VERSION
-          git push origin $BUMP_VERSION
+          git commit -m "Bump version to $RELEASE_V from workflow"
+          git push -u origin $RELEASE_V
+          git tag $RELEASE_V
+          git push origin $RELEASE_V
 
-          gh pr create -B 'main' -H $RELEASE_BRANCH_NAME \
-            --title "Bump version to $BUMP_VERSION" \
+          gh pr create -B 'main' -H $RELEASE_V \
+            --title "Bump version to $RELEASE_V" \
             --body "Created by Github action"
 
-      - uses: "marvinpinto/action-automatic-releases@latest"
+          echo "RELEASE_V=$RELEASE_V" >> $GITHUB_ENV
+
+      - uses: ncipollo/release-action@v1
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          generateReleaseNotes: true
           prerelease: false
+          tag: ${{ env.RELEASE_V }}
 
   build-docs:
     name: Buld Docs
