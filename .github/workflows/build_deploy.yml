@@ -18,6 +18,9 @@ jobs:
           app-id: ${{ vars.DEPLOY_APP_ID }}
           private-key: ${{ secrets.DEPLOY_APP_SECRET }}
 
+      - name: Show envs
+        run: env
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
