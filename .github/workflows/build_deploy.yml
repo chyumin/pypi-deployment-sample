@@ -18,6 +18,8 @@ jobs:
     name: Build and Publish Package & Push Git Tag
     permissions:
       contents: write
+      pull-requests: write
+
     runs-on: ubuntu-latest
     steps:
       - name: Show envs
