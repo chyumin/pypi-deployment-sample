@@ -17,6 +17,9 @@ jobs:
         run: env
 
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -32,8 +35,6 @@ jobs:
           poetry publish --skip-existing
 
       - name: Push bump commit and Create Tag
-        env:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         run: |
           BUMP_VERSION=v$(poetry version --short)
           git add pyproject.toml
