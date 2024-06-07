@@ -59,7 +59,7 @@ jobs:
         run: |
           git status
           git diff
-          gh pr create -B $RELEASE_BRANCH_NAME -H main --title 'Merge $RELEASE_BRANCH_NAME into main' --body 'Created by Github action'
+          gh pr create -B $RELEASE_BRANCH_NAME -H main --title 'Merge ${RELEASE_BRANCH_NAME} into main' --body 'Created by Github action'
 
   build-docs:
     runs-on: ubuntu-latest
