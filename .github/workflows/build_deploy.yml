@@ -62,6 +62,11 @@ jobs:
             --title "Bump version to $BUMP_VERSION" \
             --body "Created by Github action"
 
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+
   build-docs:
     name: Buld Docs
     runs-on: ubuntu-latest
